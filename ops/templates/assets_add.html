@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+{% block center %}
+<noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            
+
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/index">控制台</a>
+        </li>
+        <li>
+            <a href="/assets">资产管理</a>
+        </li>
+    </ul>
+</div>
+
+<form action="/assets_add" method="post">
+      <input name="id" type="hidden" value="" ><br/>
+        主机名<input name="hostname" type="text" ><br/>
+        IP地址<input name="ip" type="text" ><br/>
+        系统版本<input name="osversion" type="text" ><br/>
+        CPU(核)<input name="cpu_core" type="text" ><br/>
+        内存(G)<input name="memory" type="text" ><br/>
+        硬盘(G)<input name="disk" type="text" ><br/>
+        Product<input name="product" type="text" ><br/>
+        CPU品牌<input name="vendor_id" type="text" ><br/>
+        CPU型号<input name="model_name" type="text" ><br/>
+        品牌<input name="Manufacturer" type="text" ><br/>
+        SN<input name="sn" type="text" ><br/>
+        Ping<input name="ping" type="text" ><br/>
+      <input type="submit" value="提交" >
+</form>
+                           
+
+{% endblock %}
+
+
+</html>

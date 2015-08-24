@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+{% block title %}
+<title>OMC-变更管理</title>
+{% endblock %}
+{% block center %}
+<noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/index">控制台</a>
+            </li>
+            <li>
+                <a href="/changes">变更管理</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div>
+    <h2>资产变更记录</h2>
+    <table class="table table-striped table-bordered  table-condensed">
+    <th>Saltid</th><th>IP</th><th>变更记录</th><th>变更时间</th>
+    <tr>
+    {% for ret in rets %}
+        <td>{{ ret.saltid }}</td> 
+        <td>{{ ret.ip }}</td>
+        <td>{{ ret.chage }}</td>
+        <td>{{ ret.updatetime }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}
+</html>

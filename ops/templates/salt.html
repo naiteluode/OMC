@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+{% block title %}
+<title>OMC-配置管理</title>
+{% endblock %}
+{% block center %}
+        <noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index">控制台</a>
+                    </li>
+                    <li>
+                        <a href="/server">主机管理</a>
+                    </li>
+                    <li>
+                        <a href="/salt">配置管理</a>
+                    </li>
+                </ul>
+            </div>
+{% block salttop %}
+            <div>
+                <a href="/saltstatus" title="显示Minio状态" data-toggle="tooltip" class="btn btn-primary">实时状态</a>
+                <a href="/saltcmd" title="远程命令" data-toggle="tooltip" class="btn btn-primary">执行命令</a>
+                <a href="/saltminion" title="Minion客户端管理" data-toggle="tooltip" class="btn btn-primary">Minion管理</a>
+                <a href="/saltgroup" title="主机组管理" data-toggle="tooltip" class="btn btn-primary">分组管理</a>
+                <a href="/saltupload" title="文件上传" data-toggle="tooltip" class="btn btn-primary">文件上传</a>
+                <a href="/saltfile" title="文件分发" data-toggle="tooltip" class="btn btn-primary">文件分发</a>
+                <a href="/saltdeploy" title="部署软件" data-toggle="tooltip" class="btn btn-primary">自动化部署</a>
+                <a href="/saltsysuser" title="操作系统用户管理" data-toggle="tooltip" class="btn btn-primary">系统用户管理</a>
+                <a href="/saltlog" title="返回结果记录" data-toggle="tooltip" class="btn btn-primary">操作记录</a>
+            </div>
+{% endblock %}
+<hr style="border:0;background-color:#0099CC;height:1px;">
+{% block saltbody %}
+{% endblock %}
+        <!-- content ends -->
+        </div><!--/#content.col-md-0-->
+{% endblock %}
+</html>

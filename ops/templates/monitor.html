@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+{% block title %}
+<title>OMC-监控管理</title>
+{% endblock %}
+{% block center %}
+<noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            
+
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/index">控制台</a>
+        </li>
+        <li>
+            <a href="/monitor">监控管理</a>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2>监控列表</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <table class="table table-hover table-bordered table-striped table-condensed">
+                        <thead>
+                                            <tr>
+                                                <th>主机名</th>
+                                                <th>IP地址</th>
+                                                <th>系统版本</th>
+                                                <th>CPU(核)</th>
+                                                <th>内存(G)</th>
+                                                <th>硬盘(G)</th>
+                                                <th>product</th>
+                                                <th>CPU品牌</th>
+                                                <th>CPU型号</th>
+                                                <th>品牌</th>
+                                                <th>SN</th>
+                                                <th>Ping</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for Host in Host_list %}
+						                      <tr>
+						                        <td>{{ Host.hostname }}</td>
+						                        <td>{{ Host.ip }}</td>
+						                        <td>{{ Host.osversion }}</td>
+						                        <td>{{ Host.cpu_core }}</td>
+						                        <td>{{ Host.memory }}</td>
+						                        <td>{{ Host.disk }}</td>
+						                        <td>{{ Host.product }}</td>
+						                        <td>{{ Host.vendor_id }}</td>
+						                        <td>{{ Host.model_name }}</td>
+						                        <td>{{ Host.Manufacturer }}</td>
+						                        <td>{{ Host.sn }}</td>
+						                        <td>
+						                            {% if Host.ping == "1" %}
+                                                        <span class="label label-success">成功</span>
+                                                    {% else %}
+                                                        <span class="label label-important">失败</span>
+                                                    {% endif %}
+						                        </td>
+						                      </tr>
+						                    {% endfor %}
+                                        </tbody>
+                    </table>
+                    <ul class="pagination pagination-centered pull-right">
+                        <li><a href="#"><</a></li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!--/span-->
+
+    <!-- content ends -->
+    </div><!--/#content.col-md-0-->
+</div><!--/fluid-row-->
+{% endblock %}
+</html>

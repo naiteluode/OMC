@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+{% block title %}
+<title>OMC-装机管理</title>
+{% endblock %}
+{% block center %}
+<noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            
+
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/index">控制台</a>
+        </li>
+        <li>
+            <a href="/install">装机管理</a>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2>装机进度</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                                            <tr>
+                                                <th>IP地址</th>
+                                                <th>设备型号</th>
+                                                <th>所属机房</th>
+                                                <th>操作系统</th>
+                                                <th>业务类型</th>
+                                                <th>Ping</th>
+                                                <th>装机进度</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for Install in Install_list %}
+						                      <tr>
+						                        <td>{{ Install.ip }}</td>
+						                        <td>{{ Install.product }}</td>
+						                        <td>{{ Install.place }}</td>
+						                        <td>{{ Install.osversion }}</td>
+						                        <td>{{ Install.service }}</td>
+						                        <td>
+						                            {% if Install.ping == "1" %}
+                                                        <span class="label label-success">成功</span>
+                                                    {% else %}
+                                                        <span class="label label-danger">失败</span>
+                                                    {% endif %}
+						                        </td>
+						                        <td>
+						                            {% if Install.progress == "1" %}
+                                                        <span class="label label-info">划入装机VLAN</span>
+                                                    {% elif Install.progress == "2" %}
+                                                        <span class="label label-info">配置PXE</span>
+                                                    {% elif Install.progress == "3" %}
+                                                        <span class="label label-info">配置RAID</span>
+                                                    {% elif Install.progress == "4" %}
+                                                        <span class="label label-info">正在装机</span>
+                                                    {% elif Install.progress == "5" %}
+                                                        <span class="label label-info">部署业务</span>
+                                                    {% elif Install.progress == "6" %}
+                                                        <span class="label label-success">已发邮件</span>
+                                                    {% elif Install.progress == "7" %}
+                                                        <span class="label label-danger">IPMI失效</span>
+                                                    {% elif Install.progress == "8" %}
+                                                        <span class="label label-danger">管理卡失效</span>
+                                                    {% else %}
+                                                        <span class="label label-success">已验收</span>
+                                                    {% endif %}
+						                        </td>
+						                      </tr>
+						                    {% endfor %}
+                                        </tbody>
+                    </table>
+                    <ul class="pagination pagination-centered pull-right">
+                        <li><a href="#"><</a></li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!--/span-->
+
+    <!-- content ends -->
+    </div><!--/#content.col-md-0-->
+</div><!--/fluid-row-->
+{% endblock %}
+</html>

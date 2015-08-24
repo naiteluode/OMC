@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+
+{% block center %}
+        <noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index">控制台</a>
+                    </li>
+                    <li>
+                        <a href="/server">主机管理</a>
+                    </li>
+                    <li>
+                        <a href="/salt">配置管理</a>
+                    </li>
+                </ul>
+            </div>
+{% block switchcard %}
+            <!-- switch card -->
+            <div class="row-fluid">
+        		<div class="span12">
+        			<div class="tabbable" id="tabs-621923">
+        				<ul class="nav nav-tabs">
+        					<li class="active">
+        						<a href="#panel-16091" data-toggle="tab">实时状态</a>
+        					</li>
+        					<li>
+        						<a href="#saltcmd" data-toggle="tab">命令下发</a>
+        					</li>
+        					<li>
+        						<a href="#panel-16093" data-toggle="tab">配置管理</a>
+        					</li>
+        					<li>
+        						<a href="#panel-16094" data-toggle="tab">认证管理</a>
+        					</li>
+        					<li>
+        						<a href="#panel-16095" data-toggle="tab">文件分发</a>
+        					</li>
+        					<li>
+        						<a href="#panel-16096" data-toggle="tab">发布管理</a>
+        					</li>
+        				</ul>
+        				<div class="tab-content">
+        					<div class="tab-pane" id="panel-16091">
+        					{% block content1 %}
+        					
+        					{% endblock %}
+        					</div>
+        					<div class="tab-pane active" id="saltcmd">
+        					{% block content2 %}
+        					<div class='row'>
+                                <div class='span12'>
+                                        <form class="form-inline" id="form-execute" action="" method="post" style="margin-bottom:0;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="input-small" value="*" name="saltid" size="42">
+                                        &nbsp;&nbsp;
+                                        <select name="type" class="input-small">
+                                            <option>选择类型</option>
+                                            <option>glob</option>
+                                            <option>nodegroup</option>
+                                            <option>range</option>
+                                            <option>grain</option>
+                                            <option>pillar</option>
+                                        </select>
+                                        &nbsp;&nbsp;
+                            		    <select name="fun" class="input-small">
+                                            <option>选择函数</option>
+                                            <option>cmd.run</option>
+                                            <option>state.sls</option>
+                                        </select>
+                                        &nbsp;&nbsp;
+                                            <input type="text" class="input-max" name='cmd' size="42">
+                                            &nbsp;&nbsp;
+                                            <button type="submit" class="btn btn-primary btn-small" id="execute">执行</button>
+                                       </form>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="result" onchange="$('#progress_stop').hide()" style="height:400px;#c3c3c3;background-color:black;color:white;overflow-y:auto;" class="well">
+                            {% if execerr %}
+                            {{ execerr }}<br>
+                            {% endif %}
+                            {% if ret1 %}
+                            {% for k,v in ret1.items %}
+                                ########{{ k }}########<br>
+                                {{ v|escape|linebreaksbr  }} <br>
+                            {% endfor %}
+                            {% else %}
+                            注意：命令中不能包含危险命令({{ dangercmd }})
+                            {% endif %}
+                            </table>
+                            </div>
+        					{% endblock %}	
+        					</div>
+        					<div class="tab-pane" id="panel-16093">
+        					{% block content3 %}
+        					{% endblock %}	
+        					</div>
+        					<div class="tab-pane" id="panel-16094">
+        					{% block content4 %}
+        					{% endblock %}	
+        					</div>
+        					<div class="tab-pane" id="panel-16095">
+        					{% block content5 %}
+        					{% endblock %}	
+        					</div>
+        					<div class="tab-pane" id="panel-16096">
+        					{% block content6 %}
+        					{% endblock %}
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div><!-- /switch card -->
+{% endblock %}
+        <!-- content ends -->
+        </div><!--/#content.col-md-0-->
+{% endblock %}
+</html>

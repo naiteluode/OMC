@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+{% extends "salt.html" %}
+{% block title %}
+<title>Minion实时状态</title>
+{% endblock %}
+{% block saltbody %}
+总共主机：{{ total }}台，正常主机：{{ up }}台，故障主机：{{ down }}台<br>
+每5分钟监控一次主机状态，连续3次监控到salt状态为False则发邮件报警<br>
+
+<hr style="border:0;background-color:#0099CC;height:1px;">
+<div>
+<table class="table table-bordered table-condensed">
+    <th>Saltid</th>
+    <th>IP</th>
+    <th>主机状态</th>
+    <th>Salt状态</th>
+    <th>报警状态</th>
+    <th>操作</th>
+    {% for i in posts %}
+    {% ifequal i.saltstats 'False' %}
+    <tr class="alert-danger">
+    {% else %}
+    <tr>
+    <!-- <tr class="alert-success"> -->
+    {% endifequal %}
+    <td>{{ i.saltid }}</td> 
+    <td>{{ i.ip }}</td>
+    <td>{{ i.pingstats }}</td>
+    <td>{{ i.saltstats }}</td>
+    <td>{% ifequal i.closemail 0 %}开启{% else %}关闭{% endifequal %}</td>
+    <td><a href="?id={{ i.id }}&&closemail=1">关闭</a>
+        <a href="?id={{ i.id }}&&closemail=0">开启</a></td>
+</tr>
+{% endfor %}
+</table>
+{% ifnotequal curPage 1 %}
+    <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageUp">
+        上一页  
+    </a>    
+{% endifnotequal %}
+
+第{{ curPage }}/{{ allPage }}页
+
+ <!-- 如果当前是最后一页，就不显示【下一页】链接 -->
+{% ifnotequal curPage allPage %}
+    <a href="?curPage={{ curPage }}&&allPage={{ allPage }}&&pageType=pageDown">
+        下一页  
+    </a>    
+{% endifnotequal %}
+</div>
+{% endblock %}
+</html>

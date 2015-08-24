@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+{% extends "salt.html" %}
+{% block title %}
+<title>Salt主机分组管理</title>
+{% endblock %}
+{% block saltbody %}
+<h3>主机分组</h3>
+说明：<br>
+<form class="form-inline col-md-11" action="" method="post" style="margin-bottom:0;">
+    组名:<input type="text" name='groupname' class="input-small" placeholder="输入组名">
+    主机saltid:<input type="text" name='hosts' class="span5" placeholder="输入主机saltid">
+    <button type="submit" name='add' class="btn">添加分组</button>
+    <button type="submit" name='modf' class="btn">修改分组</button>
+    <button type="submit" name='del' class="btn">删除分组</button><br>
+    {% if msg %}
+        <font color='red'>
+            {{ msg }}
+        </font>
+    {% endif %}
+</form>
+<br>
+<hr style="border:0;background-color:#0099CC;height:1px;">
+<table class="table">
+<th>组名</th><th>主机</th>
+{% for k,v in rets.items %}
+<tr>
+    <td>{{k}}</td>
+    <td>{{v}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
+</html>

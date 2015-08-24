@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+{% extends "salt.html" %}
+{% block title %}
+<title>操作系统用户管理</title>
+{% endblock %}
+{% block saltbody %}
+<h3>创建系统用户</h3>
+说明：如果执行结果失败可能的原因是创建的用户存在;
+<br>
+<form action="" method="post">
+    匹配主机:<input type="text" class="input-small" name='saltid' value="*" placeholder="saltid" size="5">&nbsp;&nbsp;
+    用户名:<input type="text" class="input-small" name='username' placeholder="username" size="11">&nbsp;&nbsp;
+    系统密码:<input type="password" class="input-small" name='passwd' placeholder="passwd" size="11">&nbsp;&nbsp;
+    确认密码:<input type="password" class="input-small" name='passwd1' placeholder="passwd" size="11">&nbsp;&nbsp;
+    <select name="usertype">
+        <option>选择用户类型</option>
+        <option value="1">普通用户</option>
+        <option value="2">SA用户(sudo权限)</option>
+    </select>&nbsp;&nbsp;
+        <input type="submit" class="btn btn-primary pull-right" name='adduser' value="执行">
+</form>
+
+<hr style="border:0;background-color:#0099CC;height:1px;">
+<h3>删除系统用户</h3>
+说明：如果执行结果失败可能的原因是该用户在登录状态或者用户不存在;
+<br>
+<form action="" method="post"> 
+    匹配主机:<input type="text" class="input-small" name='saltid' value="*" placeholder="saltid" size="5">&nbsp;&nbsp;
+    用户名:<input type="text" class="input-small" name='username' placeholder="username" size="11">&nbsp;&nbsp;
+    <input type="submit" class="btn btn-primary pull-right" name='deluser' value="执行">
+</form>
+
+<hr style="border:0;background-color:#0099CC;height:1px;">
+<h3>修改系统用户密码</h3>
+说明：如果执行结果失败可能的原因是该用户不存在;
+<br>
+<form action="" method="post">
+    匹配主机:<input type="text" class="input-small" name='saltid' value="*" placeholder="saltid" size="5">&nbsp;&nbsp;
+    用户名:<input type="text" class="input-small" name='username' placeholder="username" size="11">&nbsp;&nbsp;
+    新密码:<input type="password" class="input-small" name='passwd' placeholder="passwd" size="11">&nbsp;&nbsp;
+    确认密码:<input type="password" class="input-small" name='passwd1' placeholder="passwd" size="11">&nbsp;&nbsp;
+    <input type="submit" class="btn btn-primary pull-right" name='chpasswd' value="执行">
+</form>
+<br>
+
+<hr style="border:0;background-color:#0099CC;height:1px;">
+<div id="result" onchange="$('#progress_stop').hide()" style="height:150px;#c3c3c3;background-color:black;color:white;overflow-y:auto;" class="well">
+{% if execerr %}
+{{ execerr }}<br>
+#######################<br>
+{% endif %}
+{% if ret1 %}
+{% for r in ret1.items %}
+{{ r }} <br>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock %}
+</html>

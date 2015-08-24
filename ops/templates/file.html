@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+{% extends "index.html" %}
+
+{% block center %}
+        <noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/index">控制台</a>
+                    </li>
+                    <li>
+                        <a href="/server">主机管理</a>
+                    </li>
+                    <li>
+                        <a href="/file">文件管理</a>
+                    </li>
+                </ul>
+            </div><!-- content ends -->
+
+            <div class="container-fluid">
+							<div class="row-fluid">
+								<div class="span12">
+									<form>
+										<fieldset>
+											 <legend>文件将被上传到/uploads/目录下</legend> 
+											 <!-- <label>请选择文件</label> -->
+											 <input data-no-uniform="true" type="file" name="file_upload" id="file_upload">
+											 <span class="help-block">上传完毕弹出绿色上传成功.</span> 
+											 <button type="submit" class="btn btn-success">上传</button>
+										</fieldset>
+									</form>
+								</div>
+								<hr>
+								<div class="box-content">
+								    <form role="form">
+							        <div class="form-group">
+                                        <label for="exampleInputFile">File input</label>
+                                        <input type="file" id="exampleInputFile">
+                                    </div>
+                                        <button type="submit" class="btn btn-success">上传</button>
+                                    </form>
+                                </div>
+							</div><!--/fluid-row-->
+			</div><!--/span-->
+
+        </div><!--/#content.col-md-0-->
+{% endblock %}
+</html>
